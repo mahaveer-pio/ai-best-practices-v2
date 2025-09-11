@@ -1,0 +1,176 @@
+#!/bin/bash
+# [AI-Generated-Copilot] - Husky pre-commit hook with AI restriction check
+
+echo "Running pre-commit checks..."
+
+# Function to check if a file matches any restricted pattern
+check_if_restricted() {
+    local file="$1"
+    if [[ -f ".ai-restricted-files" ]]; then
+        while IFS= read -r pattern || [[ -n "$pattern" ]]; do
+            # Skip empty lines and comments
+            case "$pattern" in
+                ''|'#'*) continue ;;
+            esac
+            
+            # Remove any trailing whitespace from pattern
+            pattern=$(echo "$pattern" | sed 's/[[:space:]]*$//')
+            
+            # Simple glob pattern matching
+            case "$file" in
+                $pattern) return 0 ;;  # File is restricted
+            esac
+        done < ".ai-restricted-files"
+    fi
+    return 1  # File is not restricted
+}
+
+# Function to prompt user for restricted files
+prompt_user_for_restricted_files() {
+    local restricted_files="$1"
+    echo ""
+    echo "⚠️  🚨 AI RESTRICTION VIOLATION DETECTED 🚨"
+    echo ""
+    echo "🤖 AI tools have modified the following RESTRICTED files:"
+    echo "$restricted_files" | sed 's/^/  ❌ /'
+    echo ""
+    echo "These files are marked as AI-restricted in .ai-restricted-files"
+    echo "Allowing AI to modify these files may pose security or stability risks."
+    echo ""
+    echo "What would you like to do?"
+    echo "  [c] Continue with commit (I take responsibility)"
+    echo "  [a] Abort commit and review changes"
+    echo "  [r] Remove AI comments and continue"
+    echo ""
+    printf "Choose [c/a/r]: "
+    
+    # Check if we're in an interactive environment
+    # First check for obvious non-interactive contexts
+    if [[ "$CI" = "true" ]] || [[ "$GITHUB_ACTIONS" = "true" ]] || [[ "$JENKINS_URL" != "" ]]; then
+        echo "a"
+        echo "CI/CD environment detected. Aborting for safety."
+        return 1
+    fi
+    
+    # Enhanced interactive detection
+    local is_interactive=false
+    
+    # Method 1: Check if we have a controlling terminal
+    if [[ -t 0 ]] || [[ -t 1 ]] || [[ -t 2 ]]; then
+        is_interactive=true
+    fi
+    
+    # Method 2: Check TERM variable (indicates terminal environment)
+    if [[ -n "$TERM" ]] && [[ "$TERM" != "dumb" ]]; then
+        is_interactive=true
+    fi
+    
+    # Method 3: Check if we can access /dev/tty (Unix-like systems)
+    if [[ -c "/dev/tty" ]] 2>/dev/null; then
+        is_interactive=true
+    fi
+    
+    # Method 4: Allow override for testing
+    if [[ "$AI_FORCE_INTERACTIVE" = "true" ]]; then
+        is_interactive=true
+        echo "🔧 Forced interactive mode enabled"
+    fi
+    
+    # If not interactive, abort for safety
+    if [[ "$is_interactive" = "false" ]]; then
+        echo "a"
+        echo "Non-interactive environment detected. Aborting for safety."
+        return 1
+    fi
+    
+    # Read user choice with robust input handling
+    local choice=""
+    
+    # Try to read from controlling terminal first (most reliable)
+    if [[ -c "/dev/tty" ]] 2>/dev/null; then
+        read choice < /dev/tty 2>/dev/null || choice=""
+    fi
+    
+    # Fallback to standard input if /dev/tty failed
+    if [[ -z "$choice" ]] && [[ -t 0 ]]; then
+        read choice 2>/dev/null || choice=""
+    fi
+    
+    # Final fallback for Windows/other environments
+    if [[ -z "$choice" ]]; then
+        read choice || choice="a"
+    fi
+    
+    # Default to abort if still no input
+    if [[ -z "$choice" ]]; then
+        choice="a"
+        echo "No input received, defaulting to abort for safety."
+    fi
+    
+    case "$choice" in
+        [Cc]|[Cc][Oo][Nn][Tt][Ii][Nn][Uu][Ee])
+            echo ""
+            echo "⚠️  Proceeding with commit. Please ensure changes are safe."
+            echo "📝 This decision will be logged for audit purposes."
+            return 0
+            ;;
+        [Rr]|[Rr][Ee][Mm][Oo][Vv][Ee])
+            echo ""
+            echo "❌ Automatic removal of AI comments is not implemented yet."
+            echo "Please manually review and remove AI comments from restricted files."
+            return 1
+            ;;
+        *)
+            echo ""
+            echo "❌ Commit aborted. Please review AI changes in restricted files."
+            return 1
+            ;;
+    esac
+}
+
+# FIRST: Check for AI restriction violations before any other checks
+echo "🔍 Checking for AI restriction violations..."
+
+# Scan for AI-generated content across all file types
+ai_files=$(git diff --cached --name-only | xargs grep -l "\[AI-Generated-[A-Za-z]*\]" 2>/dev/null || true)
+
+if [[ -n "$ai_files" ]]; then
+    echo "🤖 AI-generated content detected in:"
+    echo "$ai_files" | sed 's/^/  - /'
+    
+    # Check for restricted files among AI-modified files
+    restricted_ai_files=()
+    for file in $ai_files; do
+        if check_if_restricted "$file"; then
+            restricted_ai_files+=("$file")
+        fi
+    done
+    
+    # Handle restricted files if found
+    if [[ ${#restricted_ai_files[@]} -gt 0 ]]; then
+        files_list=$(IFS=$'\n'; echo "${restricted_ai_files[*]}")
+        if ! prompt_user_for_restricted_files "$files_list"; then
+            echo ""
+            echo "🛑 Commit blocked due to AI restriction violation."
+            echo "   Review changes in restricted files before proceeding."
+            exit 1
+        fi
+        
+        # Log the override decision
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - AI restriction override by $(git config user.name)" >> .ai-restriction-log
+        echo "Files: $files_list" >> .ai-restriction-log
+        echo "Decision: User chose to continue despite AI restriction" >> .ai-restriction-log
+        echo "" >> .ai-restriction-log
+        echo "✅ AI restriction override logged"
+    fi
+    
+    echo ""
+    echo "ℹ️  AI content detected - will be handled by commit-msg hook"
+else
+    echo "✅ No AI-generated content detected"
+fi
+
+# Run lint-staged after AI restriction check
+echo ""
+echo "📋 Running linting checks..."
+npx lint-staged

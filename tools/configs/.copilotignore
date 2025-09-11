@@ -1,0 +1,46 @@
+# Comprehensive .copilotignore file
+# AI tools will NOT have access to these files
+
+# Security & Configuration
+.env
+.env.*
+appsettings.*.json
+web.config
+*.pfx
+*.key
+*.pem
+*.p12
+*.cert
+*.crt
+secrets.json
+credentials.json
+token.json
+
+# Infrastructure
+Dockerfile
+docker-compose*.yml
+kubernetes/*.yml
+terraform/*.tf
+*.bicep
+azure-pipelines.yml
+.github/workflows/*.yml
+
+# Database
+migrations/
+*.sql
+connection.config
+db.config
+**/Migrations/*.cs
+
+# Sensitive Areas
+src/Security/
+src/Auth/
+src/Authorization/
+src/Authentication/
+
+# Patterns (be careful with these)
+*[Pp]assword*
+*[Ss]ecret*
+*[Tt]oken*
+*[Kk]ey*
+*[Cc]redential*

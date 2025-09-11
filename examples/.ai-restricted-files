@@ -1,0 +1,27 @@
+# AI-Restricted Files Configuration
+# Files and patterns that should not be modified by AI tools
+# One pattern per line, supports glob patterns
+
+# Security-sensitive files
+**/security/**
+**/auth/**
+**/.env*
+**/secrets/**
+
+# Critical configuration files
+**/package.json
+**/tsconfig.json
+**/next.config.mjs
+**/tailwind.config.ts
+
+# Example restricted file for testing
+ai-restricted-file.txt
+
+# Production deployment files
+**/Dockerfile
+**/docker-compose*.yml
+**/.github/workflows/**
+
+# Database files
+**/migrations/**
+**/schema.sql

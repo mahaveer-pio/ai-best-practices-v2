@@ -1,0 +1,26 @@
+{
+ "copilotEnabled": true,
+ "copilotIgnoreFile": ".copilotignore",
+ "securityChecks": {
+   "enabledForPublicCode": true,
+   "enabledForPrivateCode": true,
+   "checkForSecrets": true,
+   "checkForVulnerabilities": true,
+   "checkForSqlInjection": true
+ },
+ "qualityChecks": {
+   "checkForTestability": true,
+   "checkForPerformance": true,
+   "checkForCleanCode": true
+ },
+ "suggestions": {
+   "maxSuggestionsPerRequest": 3,
+   "includeComments": true,
+   "testGeneration": true,
+   "documentationGeneration": true
+ },
+ "telemetry": {
+   "usageReporting": false,
+   "errorReporting": true
+ }
+}

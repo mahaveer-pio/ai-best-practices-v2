@@ -1,0 +1,11 @@
+# echo "🔍 Running pre-push quality checks..."
+
+# # Run ESLint
+# echo "📝 Checking code quality with ESLint..."
+# npm run lint:fix
+
+# # Run Prettier
+# echo "🎨 Checking code formatting with Prettier..."
+# npm run format:check
+
+# echo "✅ Pre-push checks completed successfully!"

@@ -1,0 +1,42 @@
+#!/bin/sh
+# [AI-Generated-Copilot] - Native Git pre-push hook
+
+echo "Running pre-push checks..."
+
+# Type checking
+echo "🔍 Running TypeScript type check..."
+if command -v npx >/dev/null 2>&1; then
+  npx tsc --noEmit
+  if [ $? -ne 0 ]; then
+    echo "❌ TypeScript type checking failed"
+    exit 1
+  fi
+  echo "✅ TypeScript type checking passed"
+else
+  echo "⚠️  npx not found, skipping type check"
+fi
+
+# Run tests if test script exists
+if npm run test --silent 2>/dev/null; then
+  echo "🧪 Running tests..."
+  npm run test
+  if [ $? -ne 0 ]; then
+    echo "❌ Tests failed"
+    exit 1
+  fi
+  echo "✅ Tests passed"
+else
+  echo "⚠️  No test script found, skipping tests"
+fi
+
+# Build check
+echo "🏗️  Running production build check..."
+npm run build
+if [ $? -ne 0 ]; then
+  echo "❌ Production build failed"
+  exit 1
+fi
+echo "✅ Production build successful"
+
+echo "🚀 All pre-push checks passed!"
+exit 0

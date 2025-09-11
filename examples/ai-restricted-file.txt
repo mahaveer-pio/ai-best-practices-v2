@@ -1,0 +1,19 @@
+# AI Restricted File - Example
+
+This file is marked as AI-restricted in .ai-restricted-files
+AI tools should not modify this file as it contains sensitive configurations.
+
+# [AI-Generated-Claude] - Added new configuration option
+timeout_seconds=30
+
+# [AI-Generated-Copilot] - Added additional security setting
+max_retry_attempts=10
+
+# Original content
+database_password=super_secret_password
+api_key=sensitive_api_key_here
+encryption_key=do_not_change_this
+
+# Important settings
+production_mode=true
+debug_enabled=false

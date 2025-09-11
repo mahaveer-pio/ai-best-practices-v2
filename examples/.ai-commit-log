@@ -1,0 +1,24 @@
+2025-09-04 18:02:47 - AI-assisted commit: [AI-ASSISTED] test(utils): add AI detection test utilities
+  Tool: 
+  Developer: rajeshpio
+  Files: lib/test-ai-utils.ts
+  Commit: a8c0fab55c2ff634c8e5e90c5ffb19d2e722a587
+
+2025-09-04 18:06:05 - AI-assisted commit: [AI-ASSISTED] feat(security): implement comprehensive AI traceability system
+  Tool: 
+  Developer: rajeshpio
+  Files: .github/instructions/ai-commit-guide.instructions.md,CONTRIBUTING.md,docs/ai-commit-standards.md,tasks/todo.md
+  Commit: 38243270431e28c8064e5097fbda98222f09812b
+
+2025-09-04 18:40:27 - AI-assisted commit: [AI-ASSISTED] docs: add deployment configuration and scripts
+  Tool: GitHub Copilot
+  Developer: rajeshpio
+  Files: docker-compose.prod.yml,docs/deployment-guide.md,scripts/deploy.sh
+  Commit: d9f4587c0fed05ef69191dbb9a1330b84b924be5
+
+2025-09-10 18:15:05 | pending | [AI-ASSISTED] test: attempt to commit AI-modified restricted file | Anthropic Claude | AzureAD+RajeshRoyal
+2025-09-10 18:19:29 | pending | [AI-ASSISTED] test: trigger AI restriction check | Anthropic Claude | AzureAD+RajeshRoyal
+2025-09-10 18:21:49 | pending | [AI-ASSISTED] test: debug AI restriction check | Anthropic Claude | AzureAD+RajeshRoyal
+2025-09-10 18:41:03 | pending | [AI-ASSISTED] feat(restrictions): implement AI file restriction system with user prompts and logging |  | AzureAD+RajeshRoyal
+2025-09-10 19:00:45 | pending | [AI-ASSISTED] feat: Implement AI commit detection and logging system | Anthropic Claude | AzureAD+RajeshRoyal
+2025-09-10 19:07:23 | pending | [AI-ASSISTED] test: verify improved interactive input handling | Anthropic Claude | AzureAD+RajeshRoyal
