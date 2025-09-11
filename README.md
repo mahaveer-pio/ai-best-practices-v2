@@ -72,6 +72,7 @@ This comprehensive guide provides everything your team needs to integrate AI too
 |----------|-------------|----------|
 | [**Automation Tools**](tools/) | Scripts, hooks, configs | Implementation |
 | [**AI Prompts Library**](prompts/) | Advanced role-specific prompts | Daily AI development |
+| [**AI Agents Library**](agents/) | Specialized AI agent configurations | Role-based AI deployment |
 | [**Project Setup**](templates/project-setup/) | New project templates | Project initialization |
 | [**Code Examples**](examples/) | Language-specific samples | Reference implementation |
 | [**GitHub Integration**](.github/) | Copilot instructions, workflows | Team collaboration |
