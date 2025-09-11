@@ -20,8 +20,8 @@ This comprehensive guide provides everything your team needs to integrate AI too
 1. **📖 [Read the Getting Started Guide](docs/getting-started/quick-start.md)** - Understand the framework
 2. **⚙️ [Set up AI Guardrails](docs/getting-started/ai-guardrails-setup.md)** - Install automation (10 minutes)
 3. **🎯 [Choose Your AI Tools](docs/governance/AI-CONFIG.md)** - Configure approved tools
-4. **📝 [Try a Sample Workflow](#sample-workflow)** - See it in action
-5. **✅ [Review the Checklist](#implementation-checklist)** - Ensure nothing is missed
+4. **📝 [Try a Sample Workflow](#-sample-workflow)** - See it in action
+5. **✅ [Review the Checklist](#-implementation-checklist)** - Ensure nothing is missed
 
 ## 🧭 **What You Get**
 
