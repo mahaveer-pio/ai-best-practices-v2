@@ -226,7 +226,7 @@ Decision: User chose to continue despite AI restriction
 AI-assisted commits are logged to `.ai-commit-log`:
 
 ```
-# AI Commit Log - KPI Manager Pro
+# AI Commit Log - PIO Manager Pro
 2024-09-10 14:32:10 | abc123 | [AI-ASSISTED] feat(auth): update login validation | GitHub Copilot | john.doe
 ```
 
