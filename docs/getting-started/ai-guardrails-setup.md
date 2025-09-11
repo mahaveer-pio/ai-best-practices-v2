@@ -237,6 +237,65 @@ Edit `.ai-restricted-files` to match your project needs:
 **/secrets/**
 ```
 
+### GitHub Copilot .env File Exclusion
+
+GitHub Copilot can inadvertently access sensitive files like `.env` files containing API keys, database credentials, and other secrets. To prevent this, you can configure VS Code to exclude these files from Copilot's suggestions.
+
+#### Configuration Steps
+
+1. **Open VS Code Settings**
+   - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+   - Type "Preferences: Open User Settings (JSON)"
+   - Select the option to open your `settings.json` file
+
+2. **Add File Association**
+   Add the following configuration to associate `.env` files with the `dotenv` language:
+   ```json
+   "files.associations": {
+       ".env*": "dotenv"
+   }
+   ```
+
+3. **Disable Copilot for dotenv Files**
+   Configure Copilot to ignore files with the `dotenv` language type:
+   ```json
+   "github.copilot.enable": {
+       "*": true,
+       "dotenv": false
+   }
+   ```
+
+#### Complete Example Configuration
+
+```json
+{
+    "files.associations": {
+        ".env*": "dotenv"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "dotenv": false
+    }
+}
+```
+
+#### Verification
+
+To confirm the configuration is working:
+1. Open any `.env` file in your project
+2. Look for the GitHub Copilot icon in the status bar
+3. The icon should display with a slash indicating Copilot is disabled for this file type
+
+#### Important Limitations
+
+⚠️ **Please be aware of the following limitations:**
+
+- **Copilot Chat Not Affected**: Content exclusion only affects code completion suggestions. GitHub Copilot Chat can still access and reference excluded files when you explicitly mention them in conversations.
+
+- **Indirect Access**: While Copilot cannot directly read excluded files, it may still receive semantic information about them through VS Code's language services (such as type definitions, hover information, or symbol references used in non-excluded files).
+
+- **Scope**: This configuration only works within VS Code. Other editors or Copilot integrations may require different configuration methods.
+
 ### Adjust Hook Behavior
 
 **Native hooks** - Edit files in [`tools/git-hooks/native/`](../../tools/git-hooks/native/):
