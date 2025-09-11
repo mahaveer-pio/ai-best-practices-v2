@@ -32,7 +32,7 @@ npm install --save-dev jest @testing-library/react
 
 ```bash
 # From the ai-best-practices repository root:
-cp -r tools/git-hooks/husky/* .husky/
+cp -r git-hooks/husky/* .husky/
 cp examples/.ai-restricted-files ./
 cp -r .github/instructions/ ./.github/
 ```

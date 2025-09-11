@@ -21,7 +21,7 @@ The AI Guardrails system provides:
 1. **Copy hooks to your project:**
 
    ```bash
-   cp tools/git-hooks/native/* /path/to/your/project/.git/hooks/
+   cp git-hooks/native/* /path/to/your/project/.git/hooks/
    chmod +x /path/to/your/project/.git/hooks/*  # Linux/Mac only
    ```
 
@@ -51,7 +51,7 @@ The AI Guardrails system provides:
 2. **Copy Husky hooks:**
 
    ```bash
-   cp tools/git-hooks/husky/* .husky/
+   cp git-hooks/husky/* .husky/
    ```
 
 3. **Configure and test as above**
@@ -59,15 +59,14 @@ The AI Guardrails system provides:
 ## 📁 System Components
 
 ```
-tools/git-hooks/
-├── git-hooks/
-│   ├── native/           # Native Git hooks
-│   │   ├── pre-commit    # AI restriction + lint-staged
-│   │   ├── commit-msg    # Commit message transformation
-│   │   └── pre-push      # Type checking + build verification
-│   └── husky/            # Husky hook implementations
-│       ├── pre-commit    # Same functionality, Husky format
-│       └── commit-msg    # Enhanced with colored output
+git-hooks/
+├── native/           # Native Git hooks
+│   ├── pre-commit    # AI restriction + lint-staged
+│   ├── commit-msg    # Commit message transformation
+│   └── pre-push      # Type checking + build verification
+├── husky/            # Husky hook implementations
+│   ├── pre-commit    # Same functionality, Husky format
+│   └── commit-msg    # Enhanced with colored output
 ├── scripts/
 │   ├── pre-commit-ai-usage.sh    # AI detection and logging
 │   └── pre-commit-format.sh      # Code formatting
@@ -298,13 +297,13 @@ To confirm the configuration is working:
 
 ### Adjust Hook Behavior
 
-**Native hooks** - Edit files in [`tools/git-hooks/native/`](../../tools/git-hooks/native/):
+**Native hooks** - Edit files in [`git-hooks/native/`](../../git-hooks/native/):
 
 - `pre-commit` - Modify AI detection patterns or restriction logic
 - `commit-msg` - Customize commit message transformation
 - `pre-push` - Adjust build/test commands
 
-**Husky hooks** - Edit files in [`tools/git-hooks/husky/`](../../tools/git-hooks/husky/):
+**Husky hooks** - Edit files in [`git-hooks/husky/`](../../git-hooks/husky/):
 
 - Enhanced with colored output and better user experience
 - Same core functionality as native hooks
@@ -315,14 +314,14 @@ To confirm the configuration is working:
 
 ```bash
 # Use Husky for easier team sharing
-cp tools/git-hooks/husky/* .husky/
+cp git-hooks/husky/* .husky/
 ```
 
 **Production/CI Environment:**
 
 ```bash
 # Use native hooks for reliability
-cp tools/git-hooks/native/* .git/hooks/
+cp git-hooks/native/* .git/hooks/
 chmod +x .git/hooks/*
 ```
 
@@ -361,8 +360,8 @@ awk '{print $6}' .ai-commit-log | sort | uniq -c
 ### 1. Copy Core Files
 
 ```bash
-# Copy the entire tools folder
-cp -r tools/ /path/to/new/project/
+# Copy the entire git-hooks folder
+cp -r git-hooks/ /path/to/new/project/
 
 # Copy restriction configuration and examples
 cp examples/.ai-restricted-files /path/to/new/project/
@@ -377,14 +376,14 @@ cp -r examples/ /path/to/new/project/
 cd /path/to/new/project
 npm install --save-dev husky lint-staged
 npx husky install
-cp tools/git-hooks/husky/* .husky/
+cp git-hooks/husky/* .husky/
 ```
 
 **For individual/production use:**
 
 ```bash
 cd /path/to/new/project
-cp tools/git-hooks/native/* .git/hooks/
+cp git-hooks/native/* .git/hooks/
 chmod +x .git/hooks/*  # Unix systems only
 ```
 
