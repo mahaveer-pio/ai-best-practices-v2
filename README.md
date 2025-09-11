@@ -71,7 +71,7 @@ This comprehensive guide provides everything your team needs to integrate AI too
 | Resource | Description | Use Case |
 |----------|-------------|----------|
 | [**Automation Tools**](tools/) | Scripts, hooks, configs | Implementation |
-| [**Prompt Templates**](templates/prompts/) | Reusable AI prompts | Daily development |
+| [**AI Prompts Library**](prompts/) | Advanced role-specific prompts | Daily AI development |
 | [**Project Setup**](templates/project-setup/) | New project templates | Project initialization |
 | [**Code Examples**](examples/) | Language-specific samples | Reference implementation |
 | [**GitHub Integration**](.github/) | Copilot instructions, workflows | Team collaboration |
@@ -134,7 +134,7 @@ AI-generated code found in: src/utils/validation.ts
 - [ ] Establish [usage tracking](docs/governance/AI-USAGE.md) process
 
 ### **Phase 3: Optimization (Ongoing)**
-- [ ] Use [prompt templates](templates/prompts/) for consistent AI interactions
+- [ ] Explore [AI Prompts Library](prompts/) for advanced prompting techniques
 - [ ] Monitor AI usage via audit logs
 - [ ] Refine restrictions based on team experience
 - [ ] Share learnings with the community
@@ -215,7 +215,7 @@ AI-generated code found in: src/utils/validation.ts
 1. Start with [Quick Start Guide](docs/getting-started/quick-start.md)
 2. Install basic [AI Guardrails](docs/getting-started/ai-guardrails-setup.md)
 3. Try the [sample workflow](#sample-workflow)
-4. Explore [prompt templates](templates/prompts/)
+4. Explore [AI Prompts Library](prompts/) for role-specific advanced techniques
 
 ### **For Development Teams**
 1. Review [governance framework](docs/governance/)
