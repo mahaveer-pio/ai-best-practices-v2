@@ -65,9 +65,6 @@ Organizations should track:
 ## Disclaimer
 This is a template. Organizations MUST customize this document to meet their specific requirements, technological landscape, and compliance needs.
 
-## Appendices
-- Attach or link to:
-  1. Detailed tool usage policies
-  2. Prompt engineering guidelines
-  3. Security review checklists
-  4. Compliance documentation
+## Important Links
+  1. **AI Model Comparison** : https://docs.github.com/en/copilot/reference/ai-models/model-comparison
+  2. **Best practices for using GitHub Copilot** : https://docs.github.com/en/copilot/get-started/best-practices
