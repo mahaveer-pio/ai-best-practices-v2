@@ -2,7 +2,7 @@
 applyTo: '**'
 ---
 
-# AI Commit Guide - KPI Manager Pro
+# AI Commit Guide - PAI
 
 This guide provides essential instructions for tracking and documenting AI-generated content contributions across ALL file types to ensure full traceability and compliance.
 
@@ -112,7 +112,7 @@ CREATE TABLE users (
 ```html
 <!-- [AI-Generated-Claude] - Hero section template -->
 <section class="hero">
-  <h1>Welcome to KPI Manager Pro</h1>
+  <h1>Welcome to PAI</h1>
   <p>Track and analyze your key performance indicators</p>
 </section>
 ```
@@ -338,7 +338,7 @@ export function isValidEmail(email: string): boolean {
 
 ## Quick Start Guide
 
-Here's how to get started with the KPI Manager Pro API...
+Here's how to get started with the PAI API...
 ```
 
 **Or for configuration:**

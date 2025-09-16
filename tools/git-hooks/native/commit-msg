@@ -120,7 +120,7 @@ if [ -f .git/AI_COMMIT_FLAG ]; then
   
   # Log AI commit for audit trail
   if [ ! -f .ai-commit-log ]; then
-    echo "# AI Commit Log - KPI Manager Pro" > .ai-commit-log
+    echo "# AI Commit Log - PAI" > .ai-commit-log
     echo "# Format: Timestamp | Commit Hash | Commit Title | AI Tool | Developer" >> .ai-commit-log
     echo "" >> .ai-commit-log
   fi
