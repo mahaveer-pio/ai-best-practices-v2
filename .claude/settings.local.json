@@ -5,7 +5,10 @@
       "Bash(mv:*)",
       "Bash(cp:*)",
       "Bash(rmdir:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(sed:*)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []
